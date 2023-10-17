@@ -23,7 +23,13 @@
   let cardHeight
   gsap.set('.cs-stacking-cards-w', { position: 'relative' })
   stackingCards.forEach((card) => {
-   gsap.set(card, { position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 })
+   gsap.set(card, {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+   })
   })
 
   function initCards() {
@@ -70,7 +76,9 @@
   const iphoneHorizontalTwoRect = iphoneHorizontalTwo.getBoundingClientRect()
 
   devicesTl
-   .to(iphoneHorizontal, { x: () => (iphoneHorizontalRect.width - containerRect.width) * -1 })
+   .to(iphoneHorizontal, {
+    x: () => (iphoneHorizontalRect.width - containerRect.width) * -1,
+   })
    .to(iphoneVertical, { y: () => containerRect.bottom - iphoneVerticalRect.bottom }, '<')
    .to(ipadHorizontal, { x: () => ipadHorizontalRect.width - containerRect.width }, '<')
    .to(iphoneHorizontalTwo, { y: () => iphoneHorizontalTwoRect.height - containerRect.height }, '<')

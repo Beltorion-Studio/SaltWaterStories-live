@@ -93,7 +93,11 @@ function sliderAnimation() {
   gsap.set(slider, { width: () => `${sliderWidth}px` })
   gsap.set(cards, { alignSelf: 'flex-start' })
 
-  gsap.set(slider, { display: 'flex', flexDirection: 'row', gap: gap + 'px' })
+  gsap.set(slider, {
+   display: 'flex',
+   flexDirection: 'row',
+   gap: gap + 'px',
+  })
 
   const loop = horizontalLoop(cards, {
    paused: true,
@@ -105,7 +109,9 @@ function sliderAnimation() {
    gsap.to(cards[index], { aspectRatio: aspectRatio })
   }
   function setCardText(index, autoAlpha) {
-   gsap.to(cards[index].querySelector('.about-card-description'), { autoAlpha: autoAlpha })
+   gsap.to(cards[index].querySelector('.about-card-description'), {
+    autoAlpha: autoAlpha,
+   })
   }
 
   nextButton.addEventListener('click', () => {
@@ -307,7 +313,13 @@ function stackingCardsSection() {
  })
 
  cards.forEach((card) => {
-  gsap.set(card, { position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 })
+  gsap.set(card, {
+   position: 'absolute',
+   top: 0,
+   right: 0,
+   bottom: 0,
+   left: 0,
+  })
  })
 
  function initCards() {
@@ -430,12 +442,20 @@ function shopSection() {
   const activeIndex = Math.round(progress * (topTabLinks.length - 1))
 
   console.log(activeIndex)
-  gsap.to(topTabLinksWrapper, { x: `${activeIndex * -50}vw`, ease: 'power2.out', duration: 0.4 })
+  gsap.to(topTabLinksWrapper, {
+   x: `${activeIndex * -50}vw`,
+   ease: 'power2.out',
+   duration: 0.4,
+  })
   topTabLinks.forEach((link, index) => {
    if (index === activeIndex) {
     gsap.timeline().to(link, { color: 'black', duration: 0.4, ease: 'power2.out' })
    } else {
-    gsap.timeline().to(link, { color: 'rgba(0, 0, 0, 0.4)', duration: 0.4, ease: 'power2.out' })
+    gsap.timeline().to(link, {
+     color: 'rgba(0, 0, 0, 0.4)',
+     duration: 0.4,
+     ease: 'power2.out',
+    })
    }
   })
  }

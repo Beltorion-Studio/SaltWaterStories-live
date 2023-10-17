@@ -252,11 +252,19 @@ function revealTextLineByLine() {
  })
 }
 
+function addStopLenisAttr() {
+ let elements = gsap.utils.toArray('.pdf-container-w')
+ elements.forEach((element) => {
+  element.setAttribute('data-lenis-prevent', true)
+ })
+}
+
 document.addEventListener('DOMContentLoaded', function () {
  heroanimation()
  textReveal()
  pdfSlider()
  parallaxGridanimation()
  revealTextLineByLine()
+ addStopLenisAttr()
  pdfList.forEach(renderPDF)
 })

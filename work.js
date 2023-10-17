@@ -92,7 +92,15 @@ function stackingCardsSection() {
  })
 
  cards.forEach((card) => {
-  gsap.set(card, { position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 })
+  gsap.set(card, {
+   position: 'absolute',
+   top: 0,
+   right: 0,
+   bottom: 0,
+   left: 0,
+  })
+  cardHoverIn(card)
+  cardHoverOut(card)
  })
 
  function initCards() {
@@ -127,6 +135,30 @@ function stackingCardsSection() {
   animation: stackingCardsAnimation,
   invalidateOnRefresh: true,
  })
+
+ function cardHoverIn(card) {
+  card.addEventListener('mouseenter', (e) => {
+   e.preventDefault
+   let tl = gsap.timeline()
+   tl.to(card.querySelector('.stacking-card-overlay'), {
+    autoAlpha: 0,
+    ease: 'power1',
+    duration: 0.7,
+   })
+  })
+ }
+
+ function cardHoverOut(card) {
+  card.addEventListener('mouseleave', (e) => {
+   e.preventDefault
+   let tl = gsap.timeline()
+   tl.to(card.querySelector('.stacking-card-overlay'), {
+    autoAlpha: 1,
+    ease: 'power1',
+    duration: 0.7,
+   })
+  })
+ }
 }
 function nonProfitSection() {
  const nonprofitWrapper = document.querySelector('.nonprofit-list-w')
@@ -336,12 +368,20 @@ function webPresenceSection() {
 
  function updateActiveTopTabLink(progress) {
   const activeIndex = Math.round(progress * (topTabLinks.length - 1))
-  gsap.to(topTabLinksWrapper, { x: `${activeIndex * -50}vw`, ease: 'power2.out', duration: 0.4 })
+  gsap.to(topTabLinksWrapper, {
+   x: `${activeIndex * -50}vw`,
+   ease: 'power2.out',
+   duration: 0.4,
+  })
   topTabLinks.forEach((link, index) => {
    if (index === activeIndex) {
     gsap.timeline().to(link, { color: 'black', duration: 0.4, ease: 'power2.out' })
    } else {
-    gsap.timeline().to(link, { color: 'rgba(0, 0, 0, 0.4)', duration: 0.4, ease: 'power2.out' })
+    gsap.timeline().to(link, {
+     color: 'rgba(0, 0, 0, 0.4)',
+     duration: 0.4,
+     ease: 'power2.out',
+    })
    }
   })
  }
@@ -454,7 +494,7 @@ function faqAnimation() {
    .to(answerWrapper, {
     height: 'auto',
    })
-   .to(card.querySelector('.work-faq-arrow'), { rotate: '180' }, '<')
+   .to(card.querySelector('.work-faq-arrow-w'), { rotate: '90' }, '<')
 
    .reverse()
 
@@ -610,7 +650,7 @@ function brandSection() {
     element.removeAttribute('srcset')
     element.src = value
    },
-   'colors': () => {
+   colors: () => {
     element.innerHTML = ''
     let colors = value.split(',')
     colors.forEach((color) => {
@@ -620,7 +660,7 @@ function brandSection() {
      element.appendChild(div)
     })
    },
-   'illustrations': () => {
+   illustrations: () => {
     element.innerHTML = ''
     let illustrations = value
      .split(',')
@@ -664,7 +704,9 @@ function brandSection() {
    e.preventDefault()
    let tl = gsap.timeline()
    tl
-    .to(item.querySelector('.item-overlay'), { backgroundColor: 'transparent' })
+    .to(item.querySelector('.item-overlay'), {
+     backgroundColor: 'transparent',
+    })
     .to(item.querySelector('img'), { scale: 1.05 }, '<')
     .to(descriptionBox, { autoAlpha: 1, duration: 0.8 }, '<25%')
    textAnimation = gsap.fromTo(
@@ -680,7 +722,9 @@ function brandSection() {
    e.preventDefault()
    let tl = gsap.timeline()
    tl
-    .to(item.querySelector('.item-overlay'), { backgroundColor: 'hsla(0, 0.00%, 100.00%, 0.52)' })
+    .to(item.querySelector('.item-overlay'), {
+     backgroundColor: 'hsla(0, 0.00%, 100.00%, 0.52)',
+    })
     .to(item.querySelector('img'), { scale: 1 }, '<')
    if (textAnimation) {
     textAnimation.resume()
